@@ -1,12 +1,11 @@
 **On Local**
-
 <!-- Build image and push to docker hub -->
 docker buildx build --platform linux/amd64,linux/arm64 \
   -t jackdench/custom-nginx:latest \
   --push .
 
 **On EC2**
-<!-- Get durrently running docker container id -->
+<!-- Get currently running docker container id -->
 docker ps
 
 <!-- Stop running container -->
@@ -29,12 +28,13 @@ docker pull jackdench/custom-nginx:latest
 docker run -d --name nginx-proxy -p 80:80 jackdench/custom-nginx:latest
 
 **Check container is running**
-
 <!-- Get currently active containers, new container should still be up -->
 docker ps 
 
 <!-- Check logs for errors -->
 docker logs <container_id>
+Look for errors from nginx or docker
+last line in logs should say something like "Ready to run" or something like that (can't remember exactly)
 
 <!-- Live logging -->
 docker logs -f <container_id>
